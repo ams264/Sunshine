@@ -15,7 +15,6 @@
  */
 package com.example.android.sunshine;
 
-<<<<<<< HEAD
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -24,43 +23,26 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ProgressBar;
-=======
-import android.net.Network;
-import android.os.AsyncTask;
-import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
->>>>>>> 2ee1bab22070042ba5183699ed34e7d79fc01960
 import android.widget.TextView;
 
 import com.example.android.sunshine.data.SunshinePreferences;
 import com.example.android.sunshine.utilities.NetworkUtils;
 import com.example.android.sunshine.utilities.OpenWeatherJsonUtils;
-<<<<<<< HEAD
 
 import org.w3c.dom.Text;
 
-=======
-import com.example.android.sunshine.utilities.SunshineWeatherUtils;
-
-import org.json.JSONException;
-
-import java.io.IOException;
->>>>>>> 2ee1bab22070042ba5183699ed34e7d79fc01960
 import java.net.URL;
 
 public class MainActivity extends AppCompatActivity {
 
     private TextView mWeatherTextView;
 
-<<<<<<< HEAD
     // TODO (6) Add a TextView variable for the error message display
     private TextView mDataErrorTextView;
 
     // TODO (16) Add a ProgressBar variable to show and hide the progress bar
     private ProgressBar mDataLoadingProgressBar;
 
-=======
->>>>>>> 2ee1bab22070042ba5183699ed34e7d79fc01960
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -71,7 +53,6 @@ public class MainActivity extends AppCompatActivity {
          * do things like set the text of the TextView.
          */
         mWeatherTextView = (TextView) findViewById(R.id.tv_weather_data);
-<<<<<<< HEAD
 
         // TODO (7) Find the TextView for the error message using findViewById
         mDataErrorTextView = (TextView) findViewById(R.id.tv_data_error);
@@ -186,46 +167,4 @@ public class MainActivity extends AppCompatActivity {
 
         return super.onOptionsItemSelected(item);
     }
-=======
-        loadWeatherData();
-
-    }
-
-    public void loadWeatherData(){
-        String preferredLocation = SunshinePreferences.getPreferredWeatherLocation(this);
-        URL query = NetworkUtils.buildUrl(preferredLocation);
-        new fetchWeatherTask().execute(query);
-
-    }
-
-    public class fetchWeatherTask extends AsyncTask<URL, Void, String[]> {
-        @Override
-        protected String[] doInBackground(URL... params){
-            URL searchUrl = params[0];
-            String[] weatherItems = null;
-            try {
-                String weatherResults = NetworkUtils.getResponseFromHttpUrl(searchUrl);
-                weatherItems = OpenWeatherJsonUtils.getSimpleWeatherStringsFromJson(MainActivity.this, weatherResults);
-            }
-            catch(IOException ex){
-                ex.printStackTrace();
-            }catch (JSONException jsonEx){
-                jsonEx.printStackTrace();
-            }
-
-            return weatherItems;
-        }
-
-        @Override
-        protected void onPostExecute(String[] weatherItems){
-            if(weatherItems != null && weatherItems.length > 0){
-                mWeatherTextView.setText("");
-                for(String item: weatherItems){
-                    mWeatherTextView.append(item + "\n\n");
-                }
-            }
-
-        }
-    }
->>>>>>> 2ee1bab22070042ba5183699ed34e7d79fc01960
 }

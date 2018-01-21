@@ -15,11 +15,20 @@
  */
 package com.example.android.sunshine.utilities;
 
+<<<<<<< HEAD
+import android.net.Uri;
+import android.util.Log;
+
+=======
+>>>>>>> 2ee1bab22070042ba5183699ed34e7d79fc01960
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
+<<<<<<< HEAD
+=======
 import java.net.URI;
+>>>>>>> 2ee1bab22070042ba5183699ed34e7d79fc01960
 import java.net.URL;
 import java.util.Scanner;
 
@@ -67,6 +76,25 @@ public final class NetworkUtils {
      * @return The URL to use to query the weather server.
      */
     public static URL buildUrl(String locationQuery) {
+<<<<<<< HEAD
+        Uri builtUri = Uri.parse(FORECAST_BASE_URL).buildUpon()
+                .appendQueryParameter(QUERY_PARAM, locationQuery)
+                .appendQueryParameter(FORMAT_PARAM, format)
+                .appendQueryParameter(UNITS_PARAM, units)
+                .appendQueryParameter(DAYS_PARAM, Integer.toString(numDays))
+                .build();
+
+        URL url = null;
+        try {
+            url = new URL(builtUri.toString());
+        } catch (MalformedURLException e) {
+            e.printStackTrace();
+        }
+
+        Log.v(TAG, "Built URI " + url);
+
+        return url;
+=======
         // TODO (1) Fix this method to return the URL used to query Open Weather Map's API
         URI builtUri = URI.create(FORECAST_BASE_URL);
         URL locationQueryUrl = null;
@@ -78,6 +106,7 @@ public final class NetworkUtils {
         }
 
         return locationQueryUrl;
+>>>>>>> 2ee1bab22070042ba5183699ed34e7d79fc01960
     }
 
     /**
